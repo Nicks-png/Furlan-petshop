@@ -1,90 +1,106 @@
 # CLAUDE.md — Furlan Pet Shop
 
-## Contexto
-Site institucional + loja para o **Furlan Pet Shop** (Av. Mutinga, 2476 - Vila Pirituba, SP).
-Dados reais: 4,5★ (253 avaliações), tel (11) 3906-0985, Instagram, entrega disponível.
+## Visão geral
 
-## Decisões
-- **Estilo**: Quente/aconchegante — bege, amarelo, marrom, sensação de loja local
-- **Seções**: Produtos/Loja + Avaliações (+ Hero, Sobre, Contato)
-- **Stack**: Node.js + Express (backend)
-- **Repositório**: Nicks-png/Furlan-petshop
+Site institucional + loja para o **Furlan Pet Shop** (Av. Mutinga, 2476 - Vila Pirituba, SP).
+Dados reais: 4,5★ (253 avaliações Google), tel (11) 3906-0985, entrega disponível.
+
+## Stack
+
+- **Backend**: Node.js + Express (`server.js`)
+- **Frontend**: HTML/CSS/JS estático em `public/`
+- **Dados**: catálogo de produtos em `src/data/produtos.js` (sem banco de dados)
+- **Repositório**: Nicks-png/Furlan-petshop (branch `main`)
 
 ## Estrutura de arquivos
 
 ```
 Furlan-petshop/
-├── server.js              # Express — serve estático + rotas API
-├── package.json
-├── .env                   # PORT
+├── server.js                  # Express — serve estático + API /api/produtos
+├── package.json               # dependências: express, dotenv
+├── .env                       # PORT (não versionado)
+├── .gitignore
 ├── public/
-│   ├── index.html         # Página principal (SPA de uma página)
+│   ├── index.html             # SPA de uma página (5 seções)
 │   ├── css/
-│   │   └── style.css      # Design system: paleta bege/amarelo/marrom
+│   │   └── style.css          # Design system: paleta bege/amarelo/marrom
 │   └── js/
-│       └── main.js        # Filtro de produtos, carrossel avaliações
+│       └── main.js            # Filtro de produtos (fetch API) + carrossel
 └── src/
     └── data/
-        └── produtos.js    # Catálogo estático de produtos
+        └── produtos.js        # 18 produtos em 5 categorias
 ```
 
-## Seções da página (ordem)
+## Seções da página
 
-1. **Hero** — Logo + nome, slogan, botão WhatsApp e botão "Ver Produtos"
-2. **Sobre** — Breve texto sobre o pet shop + endereço + horários
-3. **Produtos/Loja** — Cards com filtro por categoria (cães, gatos, aves, peixes, acessórios)
-4. **Avaliações** — Carrossel com 5 depoimentos reais do Google Maps (4,5★ · 253)
-5. **Contato** — Endereço, telefone, link Instagram, mapa Google embed, botão WhatsApp
+| # | Seção | O que contém |
+|---|-------|-------------|
+| 1 | **Hero** | Slogan, botão WhatsApp, botão "Ver Produtos", badges (rating, entrega) |
+| 2 | **Sobre** | Texto institucional, endereço, horário, telefone |
+| 3 | **Produtos** | Cards com filtro por categoria + botão "Pedir via WhatsApp" |
+| 4 | **Avaliações** | Carrossel com 5 depoimentos reais do Google Maps, nota 4,5★ |
+| 5 | **Contato** | Endereço, tel, Instagram, mapa Google embed, botão WhatsApp |
 
 ## Paleta de cores
 
-| Variável       | Valor     | Uso                        |
-|----------------|-----------|----------------------------|
-| `--bg`         | `#fdf6ee` | Fundo principal (bege)     |
-| `--surface`    | `#fff8f0` | Cards e superfícies        |
-| `--accent`     | `#e8a020` | Amarelo/ocre — destaque    |
-| `--accent-d`   | `#c47a15` | Marrom dourado — hover     |
-| `--brown`      | `#5c3d1e` | Marrom escuro              |
-| `--text`       | `#3b2a14` | Texto principal            |
-| `--text2`      | `#7a5c3a` | Texto secundário           |
-
-## Dados reais
-
-- **Nome**: Furlan Pet Shop
-- **Endereço**: Av. Mutinga, 2476 - Vila Pirituba, São Paulo - SP, 05110-000
-- **Telefone**: (11) 3906-0985
-- **WhatsApp**: 11 3906-0985
-- **Instagram**: instagram.com/furlanpetshop (confirmar URL)
-- **Horário**: seg–sáb 09h–19h (confirmar dias completos)
-- **Serviços**: Compras na loja · Retirada · Entrega
+| Variável     | Valor     | Uso                     |
+|--------------|-----------|-------------------------|
+| `--bg`       | `#fdf6ee` | Fundo principal (bege)  |
+| `--surface`  | `#fff8f0` | Cards e superfícies     |
+| `--accent`   | `#e8a020` | Amarelo/ocre — destaque |
+| `--accent-d` | `#c47a15` | Marrom dourado — hover  |
+| `--brown`    | `#5c3d1e` | Marrom escuro           |
+| `--text`     | `#3b2a14` | Texto principal         |
+| `--text2`    | `#7a5c3a` | Texto secundário        |
 
 ## API
 
-| Método | Rota                          | Descrição               |
-|--------|-------------------------------|-------------------------|
-| GET    | `/api/produtos`               | Lista todos os produtos |
-| GET    | `/api/produtos?categoria=caes`| Filtra por categoria    |
+| Método | Rota                           | Descrição               |
+|--------|--------------------------------|-------------------------|
+| GET    | `/api/produtos`                | Lista todos os produtos |
+| GET    | `/api/produtos?categoria=caes` | Filtra por categoria    |
 
 ## Categorias de produtos
 
-`caes` · `gatos` · `aves` · `peixes` · `acessorios`
+`caes` · `gatos` · `aves` · `peixes` · `acessorios` — 18 produtos no total.
 
-## Avaliações (carrossel)
+## Dados reais do estabelecimento
 
-1. **Fabio Lopes** ⭐⭐⭐⭐⭐ — "Melhor pet shop da região! Atendimento diferenciado, profissionais que realmente entendem de pets e ótimos preços."
-2. **Valter Luis** ⭐⭐⭐⭐⭐ — "Pessoal muito atencioso, bons produtos e preços acessíveis. Faz entregas. Atendimento show de bola!"
-3. ⭐⭐⭐⭐⭐ — "Boa variedade de ração e alimentação, acessórios, para cães, gatos e aves."
-4. ⭐⭐⭐⭐⭐ — "Muito atenciosos, entrega rápida, preços e produtos ótimos."
-5. ⭐⭐⭐⭐⭐ — "Pet shop clássica da região com muitas opções para seus animais de estimação."
+- **Nome**: Furlan Pet Shop
+- **Endereço**: Av. Mutinga, 2476 — Vila Pirituba, São Paulo - SP, 05110-000
+- **Telefone / WhatsApp**: (11) 3906-0985 → `wa.me/5511390609851`
+- **Instagram**: @furlanpetshop (confirmar URL exata com o cliente)
+- **Horário**: Segunda a Sábado · 09h às 19h (confirmar com cliente)
+- **Serviços**: Compras na loja · Retirada · Entrega
+- **Avaliação Google**: 4,5★ · 253 avaliações
 
 ## Comandos
 
 ```bash
-npm install      # instalar dependências
-npm start        # rodar em localhost:3000
+npm install            # instalar dependências
+npm start              # rodar em localhost:3000
+PORT=3004 npm start    # rodar em porta alternativa
 ```
 
-## Deploy
+## Status de implementação
 
-- Push em `master` → deploy automático (Render ou GitHub Pages)
-- Variável de ambiente: `PORT=3000`
+- [x] Estrutura de arquivos criada
+- [x] Backend Express com API `/api/produtos`
+- [x] 18 produtos cadastrados em 5 categorias
+- [x] Frontend completo: Hero, Sobre, Produtos, Avaliações, Contato
+- [x] Filtro de categorias dinâmico (fetch API)
+- [x] Carrossel de avaliações com navegação
+- [x] Botões WhatsApp funcionais com mensagem pré-preenchida
+- [x] Mapa Google embed
+- [x] Responsivo (mobile)
+- [x] Push no GitHub (branch `main`)
+- [ ] Confirmar URL do Instagram com o cliente
+- [ ] Confirmar horários completos com o cliente
+- [ ] Deploy no Render ou configurar GitHub Pages
+
+## Deploy (Render)
+
+1. Conectar repositório `Nicks-png/Furlan-petshop`
+2. Build: `npm install`
+3. Start: `node server.js`
+4. Variável de ambiente: `PORT=10000`
