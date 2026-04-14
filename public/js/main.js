@@ -306,65 +306,7 @@ function Carrossel() {
   )
 }
 
-// ── SplineCard (adaptado do 21st.dev — usa <spline-viewer> web component) ────
-// URL do cachorro: substituir pela cena de cachorro do spline.design/community
-const DOG_SCENE = 'https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode'
-
-function SplineCard() {
-  // Cria o <spline-viewer> como elemento nativo (web component, sem JSX)
-  const viewerRef = useRef(null)
-
-  useEffect(() => {
-    const wrap = viewerRef.current
-    if (!wrap) return
-    const viewer = document.createElement('spline-viewer')
-    viewer.setAttribute('url', DOG_SCENE)
-    viewer.style.width  = '100%'
-    viewer.style.height = '100%'
-    wrap.appendChild(viewer)
-    return () => { if (wrap.contains(viewer)) wrap.removeChild(viewer) }
-  }, [])
-
-  // Spotlight SVG — aceternity (adaptado, fill cor quente)
-  const spotlight = React.createElement('svg', {
-    className: 'spline-spotlight',
-    xmlns: 'http://www.w3.org/2000/svg',
-    viewBox: '0 0 3787 2842', fill: 'none',
-  },
-    React.createElement('g', { filter: 'url(#sp-filter)' },
-      React.createElement('ellipse', {
-        cx: '1924.71', cy: '273.501', rx: '1924.71', ry: '273.501',
-        transform: 'matrix(-0.822377 -0.568943 -0.568943 0.822377 3631.88 2291.09)',
-        fill: '#e8a020', fillOpacity: '0.18',
-      })
-    ),
-    React.createElement('defs', null,
-      React.createElement('filter', {
-        id: 'sp-filter', x: '0.86', y: '0.84',
-        width: '3785.16', height: '2840.26',
-        filterUnits: 'userSpaceOnUse', colorInterpolationFilters: 'sRGB',
-      },
-        React.createElement('feFlood', { floodOpacity: '0', result: 'BackgroundImageFix' }),
-        React.createElement('feBlend', { mode: 'normal', in: 'SourceGraphic', in2: 'BackgroundImageFix', result: 'shape' }),
-        React.createElement('feGaussianBlur', { stdDeviation: '151', result: 'effect1' })
-      )
-    )
-  )
-
-  return React.createElement('div', { className: 'spline-card' },
-    spotlight,
-    React.createElement('div', { className: 'spline-content' },
-      React.createElement('div', { className: 'spline-text' },
-        React.createElement('h2', null, 'Seu pet em 3D'),
-        React.createElement('p', null, 'A Furlan Pet Shop cuida do seu melhor amigo com produtos de qualidade e atendimento especializado.')
-      ),
-      React.createElement('div', { className: 'spline-viewer-wrap', ref: viewerRef })
-    )
-  )
-}
-
 // ── Montar componentes nos containers do HTML ─────────────────────────────────
 ReactDOM.createRoot(document.getElementById('react-hero')).render(React.createElement(AnimatedHero))
-ReactDOM.createRoot(document.getElementById('react-spline')).render(React.createElement(SplineCard))
 ReactDOM.createRoot(document.getElementById('react-loja')).render(React.createElement(Loja))
 ReactDOM.createRoot(document.getElementById('react-carrossel')).render(React.createElement(Carrossel))
