@@ -144,18 +144,51 @@ section { padding: 4.5rem 2rem; }
 .info-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: .1rem; }
 .info-item strong { display: block; color: var(--text); font-size: .95rem; }
 .info-item span { color: var(--text2); font-size: .9rem; }
-.sobre-visual {
-  background: linear-gradient(135deg, #ffe9c0, #ffd280);
+/* ── SplineCard (adaptado do 21st.dev — web component, sem bundler) ──────── */
+.spline-card {
+  position: relative; overflow: hidden;
+  background: rgba(0,0,0,0.92);
   border-radius: var(--r);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 8rem; height: 280px;
-  box-shadow: var(--shadow);
-  overflow: hidden;
+  height: 340px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08), var(--shadow);
 }
-.sobre-visual span {
-  display: inline-block;
-  animation: dogLoop 5s ease-in-out infinite;
-  transform-origin: bottom center;
+
+/* Spotlight SVG — aceternity (adaptado) */
+.spline-spotlight {
+  position: absolute; z-index: 1;
+  width: 138%; height: 169%;
+  top: -40%; left: -10%;
+  opacity: 0;
+  animation: spotlightFade 1.2s .3s ease forwards;
+  pointer-events: none;
+}
+@keyframes spotlightFade {
+  to { opacity: 1; }
+}
+
+.spline-content {
+  position: relative; z-index: 2;
+  height: 100%;
+  display: flex;
+}
+
+.spline-text {
+  flex: 1; padding: 1.8rem;
+  display: flex; flex-direction: column; justify-content: center; gap: .8rem;
+}
+.spline-text h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900;
+  background: linear-gradient(to bottom, #fff, rgba(255,255,255,.5));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1.2;
+}
+.spline-text p { color: rgba(255,255,255,.55); font-size: .9rem; line-height: 1.6; }
+
+.spline-viewer-wrap {
+  flex: 1; position: relative; overflow: hidden;
+}
+spline-viewer {
+  width: 100%; height: 100%; display: block;
 }
 @keyframes dogLoop {
   0%   { transform: translateY(0)      rotate(0deg)   scale(1);    }
