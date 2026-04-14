@@ -2,6 +2,177 @@
 
 const { useState, useEffect, useRef } = React
 
+// ── ContainerScroll (adaptado do 21st.dev — sem framer-motion, scroll nativo) ─
+function ContainerScroll({ titleComponent, children }) {
+  const containerRef = useRef(null)
+  const cardRef      = useRef(null)
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  useEffect(() => {
+    const container = containerRef.current
+    const card      = cardRef.current
+    if (!container || !card) return
+
+    function onScroll() {
+      const rect     = container.getBoundingClientRect()
+      const winH     = window.innerHeight
+      const total    = winH + rect.height
+      const progress = Math.min(1, Math.max(0, (winH - rect.top) / total))
+
+      const rotate = 20 - progress * 20
+      const scale  = isMobile
+        ? 0.7  + progress * 0.2
+        : 1.05 - progress * 0.05
+      const translateY = -progress * 60
+
+      card.style.transform = `perspective(1000px) rotateX(${rotate}deg) scale(${scale}) translateY(${translateY}px)`
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [isMobile])
+
+  const containerStyle = {
+    height: isMobile ? '52rem' : '72rem',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    position: 'relative', padding: isMobile ? '1rem' : '5rem',
+  }
+  const innerStyle = {
+    paddingTop: isMobile ? '2.5rem' : '8rem',
+    paddingBottom: isMobile ? '2.5rem' : '8rem',
+    width: '100%', position: 'relative',
+  }
+  const titleStyle = {
+    maxWidth: '72rem', margin: '0 auto 2rem', textAlign: 'center',
+    transition: 'transform .1s linear',
+  }
+  const cardStyle = {
+    maxWidth: '72rem', margin: '-3rem auto 0',
+    height: isMobile ? '24rem' : '36rem', width: '100%',
+    border: '4px solid #c4a265', padding: isMobile ? '0.5rem' : '1.5rem',
+    background: 'linear-gradient(135deg, #3b2a14, #5c3d1e)',
+    borderRadius: '30px',
+    boxShadow: '0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026',
+    transformOrigin: 'top center',
+    transition: 'transform .05s linear',
+    overflow: 'hidden',
+  }
+  const innerCardStyle = {
+    height: '100%', width: '100%',
+    overflow: 'hidden', borderRadius: '18px',
+    background: 'var(--bg)',
+  }
+
+  return React.createElement('div', { style: containerStyle, ref: containerRef },
+    React.createElement('div', { style: innerStyle },
+      React.createElement('div', { style: titleStyle }, titleComponent),
+      React.createElement('div', { style: cardStyle, ref: cardRef },
+        React.createElement('div', { style: innerCardStyle }, children)
+      )
+    )
+  )
+}
+
+// ── Preview do card (conteúdo dentro do scroll 3D) ────────────────────────────
+function LojaPreview() {
+  const PREVIEW = [
+    { emoji: '🐕', nome: 'Royal Canin Adulto 15kg', preco: 'R$ 189,90', cat: 'Cães' },
+    { emoji: '🐱', nome: 'Whiskas Adulto 3kg',      preco: 'R$ 59,90',  cat: 'Gatos' },
+    { emoji: '🐦', nome: 'Alpiste Selecionado 500g', preco: 'R$ 12,90', cat: 'Aves' },
+    { emoji: '🐟', nome: 'Tetra Goldfish 100g',      preco: 'R$ 22,90', cat: 'Peixes' },
+    { emoji: '🛁', nome: 'Shampoo Neutro 500ml',     preco: 'R$ 27,90', cat: 'Acessórios' },
+    { emoji: '🦴', nome: 'Osso Natural',             preco: 'R$ 18,90', cat: 'Cães' },
+  ]
+  const wrapStyle = {
+    padding: '1.2rem', height: '100%',
+    display: 'flex', flexDirection: 'column', gap: '1rem',
+  }
+  const headerStyle = {
+    display: 'flex', alignItems: 'center', gap: '.5rem',
+    fontSize: '.85rem', fontWeight: 700, color: 'var(--text2)',
+    borderBottom: '1px solid var(--border)', paddingBottom: '.6rem',
+  }
+  const gridStyle = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
+    gap: '.7rem', flex: 1, overflow: 'hidden',
+  }
+  const cardStyle = {
+    background: 'var(--surface)', borderRadius: 'var(--rs)',
+    padding: '.8rem', textAlign: 'center',
+    border: '1px solid var(--border)',
+  }
+
+  return React.createElement('div', { style: wrapStyle },
+    React.createElement('div', { style: headerStyle },
+      React.createElement('span', null, '🛒'),
+      React.createElement('span', null, 'Nossos Produtos — Furlan Pet Shop')
+    ),
+    React.createElement('div', { style: gridStyle },
+      PREVIEW.map((p, i) =>
+        React.createElement('div', { key: i, style: cardStyle },
+          React.createElement('div', { style: { fontSize: '2rem', marginBottom: '.3rem' } }, p.emoji),
+          React.createElement('div', { style: { fontSize: '.78rem', fontWeight: 700, color: 'var(--text)', marginBottom: '.2rem' } }, p.nome),
+          React.createElement('div', { style: { fontSize: '.7rem', color: 'var(--text2)', marginBottom: '.3rem' } }, p.cat),
+          React.createElement('div', { style: { fontSize: '.85rem', fontWeight: 800, color: 'var(--accent-d)' } }, p.preco)
+        )
+      )
+    )
+  )
+}
+
+// ── HeroScroll (monta o ContainerScroll no Hero) ──────────────────────────────
+function HeroScroll() {
+  const titleComponent = React.createElement('div', null,
+    React.createElement('div', {
+      style: {
+        display: 'inline-block', background: 'var(--accent)', color: '#fff',
+        padding: '.3rem .9rem', borderRadius: '50px',
+        fontSize: '.8rem', fontWeight: 700, letterSpacing: '.05em', marginBottom: '1.2rem',
+      }
+    }, '🐾 Vila Pirituba, São Paulo'),
+    React.createElement('h1', {
+      style: {
+        fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 900,
+        color: 'var(--brown)', lineHeight: 1.15, marginBottom: '.8rem',
+      }
+    }, 'Tudo que seu pet precisa, aqui perto!'),
+    React.createElement('p', {
+      style: { color: 'var(--text2)', fontSize: '1.1rem', maxWidth: '500px', margin: '0 auto 2rem' }
+    }, 'Rações, acessórios e produtos para cães, gatos, aves e peixes. Retirada e entrega.'),
+    React.createElement('div', { style: { display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' } },
+      React.createElement('a', {
+        href: 'https://wa.me/5511390609851', target: '_blank',
+        style: {
+          background: '#25D366', color: '#fff', padding: '.8rem 1.8rem',
+          borderRadius: '50px', fontWeight: 700, fontSize: '1rem',
+          textDecoration: 'none', display: 'inline-block',
+        }
+      }, '💬 Fale pelo WhatsApp'),
+      React.createElement('a', {
+        href: '#produtos',
+        style: {
+          background: 'transparent', color: 'var(--brown)',
+          border: '2px solid var(--brown)', padding: '.75rem 1.8rem',
+          borderRadius: '50px', fontWeight: 700, fontSize: '1rem',
+          textDecoration: 'none', display: 'inline-block',
+        }
+      }, 'Ver Produtos')
+    )
+  )
+
+  return React.createElement(ContainerScroll, { titleComponent },
+    React.createElement(LojaPreview)
+  )
+}
+
 // ── Dados de avaliações ───────────────────────────────────────────────────────
 const AVALIACOES = [
   { autor: 'Fabio Lopes', texto: 'Melhor pet shop da região! Atendimento diferenciado, profissionais que realmente entendem de pets e ótimos preços. Sou cliente fiel!' },
@@ -121,5 +292,6 @@ function Carrossel() {
 }
 
 // ── Montar componentes nos containers do HTML ─────────────────────────────────
+ReactDOM.createRoot(document.getElementById('react-hero')).render(React.createElement(HeroScroll))
 ReactDOM.createRoot(document.getElementById('react-loja')).render(React.createElement(Loja))
 ReactDOM.createRoot(document.getElementById('react-carrossel')).render(React.createElement(Carrossel))
