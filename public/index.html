@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 </head>
 <body>
 
@@ -86,17 +88,7 @@
     <h2 class="section-title">Nossos Produtos</h2>
     <div class="divider"></div>
     <p class="section-sub">Boa variedade de rações, acessórios e alimentação para todos os pets</p>
-    <div class="filtros">
-      <button class="filtro-btn active" data-cat="">Todos</button>
-      <button class="filtro-btn" data-cat="caes">🐕 Cães</button>
-      <button class="filtro-btn" data-cat="gatos">🐱 Gatos</button>
-      <button class="filtro-btn" data-cat="aves">🐦 Aves</button>
-      <button class="filtro-btn" data-cat="peixes">🐟 Peixes</button>
-      <button class="filtro-btn" data-cat="acessorios">🛒 Acessórios</button>
-    </div>
-    <div class="produtos-grid" id="produtos-grid">
-      <!-- Preenchido via JS -->
-    </div>
+    <div id="react-loja"><!-- React: Loja --></div>
   </div>
 </section>
 
@@ -110,39 +102,7 @@
       <div class="rating-stars">★★★★½</div>
       <div class="rating-count">253 avaliações no Google Maps</div>
     </div>
-    <div class="carrossel">
-      <div class="cards-track" id="cards-track">
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Melhor pet shop da região! Atendimento diferenciado, profissionais que realmente entendem de pets e ótimos preços. Sou cliente fiel!"</p>
-          <div class="review-author">Fabio Lopes</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Pessoal muito atencioso, bons produtos e preços acessíveis. Faz entregas. Atendimento show de bola!"</p>
-          <div class="review-author">Valter Luis · Local Guide</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Boa variedade de ração e alimentação, acessórios, para cães, gatos e aves."</p>
-          <div class="review-author">Cliente Google Maps</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Muito atenciosos, entrega rápida, preços e produtos ótimos."</p>
-          <div class="review-author">Cliente Google Maps</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Pet shop clássica da região com muitas opções para seus animais de estimação."</p>
-          <div class="review-author">Cliente Google Maps</div>
-        </div>
-      </div>
-    </div>
-    <div class="carrossel-btns">
-      <button class="carr-btn" id="carr-prev">◀</button>
-      <button class="carr-btn" id="carr-next">▶</button>
-    </div>
+    <div id="react-carrossel"><!-- React: Carrossel --></div>
   </div>
 </section>
 
