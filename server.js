@@ -10,6 +10,11 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.static(path.join(__dirname, 'public')))
 
+// ── Páginas ───────────────────────────────────────────────────────────────────
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin.html'))
+})
+
 // ── API ───────────────────────────────────────────────────────────────────────
 app.get('/api/produtos', (req, res) => {
   const { categoria } = req.query

@@ -13,6 +13,11 @@
 </head>
 <body>
 
+<!-- Aurora global — fixo, sincronizado com o hero -->
+<div class="aurora-global">
+  <div class="aurora-global-bg"></div>
+</div>
+
 <!-- ── Nav ─────────────────────────────────────────────────────────────────── -->
 <nav>
   <div class="nav-logo">
@@ -24,39 +29,33 @@
     <a href="#avaliacoes">Avaliações</a>
     <a href="#contato">Contato</a>
   </div>
-  <a href="https://wa.me/5511390609851" target="_blank" class="nav-wa">WhatsApp</a>
+  <div class="nav-right">
+    <a href="/admin.html" class="nav-admin">⚙ Painel</a>
+    <a href="https://wa.me/5511390609851" target="_blank" class="nav-wa">WhatsApp</a>
+  </div>
 </nav>
 
 <!-- ── Hero ────────────────────────────────────────────────────────────────── -->
 <section id="hero">
-  <div class="hero-noise"></div>
+  <div class="aurora-wrap">
+    <div class="aurora-bg"></div>
+  </div>
   <div class="hero-inner">
-    <div class="hero-left">
-      <div class="hero-eyebrow">🐾 Vila Pirituba · São Paulo</div>
-      <div id="react-hero"></div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-mascot-wrap">🐶</div>
-    </div>
+    <div id="react-hero"></div>
   </div>
   <div class="hero-bottom">
-    <div class="badge">⭐ <strong>4,5</strong> no Google · 253 avaliações</div>
-    <div class="badge">🚚 <strong>Entrega</strong> disponível</div>
-    <div class="badge">🏪 <strong>Retirada</strong> na loja</div>
+    <div class="badge">⭐ <strong>4,5</strong> · 253 avaliações no Google</div>
+    <div class="badge">📍 <strong>Av. Mutinga, 2476</strong> — Vila Pirituba</div>
+    <div class="badge">🕘 Seg–Sáb · <strong>09h às 19h</strong></div>
     <div class="badge">📞 <strong>(11) 3906-0985</strong></div>
   </div>
 </section>
-
-<!-- Wave divider -->
-<svg class="wave" viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-  <path d="M0 48 C360 0 1080 0 1440 48 L1440 0 L0 0 Z" fill="#1a0f00"/>
-</svg>
 
 <!-- ── Sobre ─────────────────────────────────────────────────────────────── -->
 <section id="sobre">
   <div class="container">
     <div class="sobre-grid">
-      <div class="sobre-text">
+      <div class="sobre-text fade-up">
         <div class="section-label">Quem somos</div>
         <h2 class="section-title">A pet shop clássica de Vila Pirituba</h2>
         <p>Referência no bairro há anos, o Furlan atende cães, gatos, aves, peixes e muito mais — com produtos de qualidade, preços honestos e gente que entende de bicho.</p>
@@ -84,22 +83,24 @@
           </div>
         </div>
       </div>
-      <div class="sobre-visual">
-        <div class="sobre-card">
-          <div class="sobre-card-emoji"><span>🐶</span></div>
-          <div class="sobre-card-stat">
-            <div class="stat">
-              <div class="stat-num">4,5★</div>
-              <div class="stat-label">Google Maps</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">253</div>
-              <div class="stat-label">Avaliações</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">anos</div>
-              <div class="stat-label">no bairro</div>
-            </div>
+      <div class="sobre-visual fade-up" style="transition-delay:.15s">
+        <div class="sobre-mascot"><span>🐶</span></div>
+        <div class="sobre-stats">
+          <div class="sobre-stat-item">
+            <div class="sobre-stat-num">4,5★</div>
+            <div class="sobre-stat-label">Nota no Google Maps</div>
+          </div>
+          <div class="sobre-stat-item">
+            <div class="sobre-stat-num">253</div>
+            <div class="sobre-stat-label">Avaliações de clientes</div>
+          </div>
+          <div class="sobre-stat-item">
+            <div class="sobre-stat-num">+5</div>
+            <div class="sobre-stat-label">Anos no bairro</div>
+          </div>
+          <div class="sobre-stat-item">
+            <div class="sobre-stat-num">5</div>
+            <div class="sobre-stat-label">Tipos de animais atendidos</div>
           </div>
         </div>
       </div>
@@ -107,47 +108,32 @@
   </div>
 </section>
 
-<!-- Wave divider -->
-<svg class="wave" viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#fdf8f2">
-  <path d="M0 0 C360 48 1080 48 1440 0 L1440 48 L0 48 Z" fill="#1a0f00"/>
-</svg>
-
 <!-- ── Produtos ───────────────────────────────────────────────────────────── -->
 <section id="produtos">
   <div class="container">
-    <div class="section-label" style="color:rgba(240,146,10,.7)">Loja</div>
-    <h2 class="section-title light">Tudo que o seu pet precisa</h2>
-    <p class="section-sub" style="color:rgba(255,255,255,.35)">Rações, acessórios, higiene e muito mais</p>
+    <div class="section-label fade-up">Loja</div>
+    <h2 class="section-title fade-up" style="transition-delay:.08s">Tudo que o seu pet precisa</h2>
+    <p class="section-sub fade-up" style="transition-delay:.16s">Rações, acessórios, higiene e muito mais</p>
     <div id="react-loja"></div>
   </div>
 </section>
 
-<!-- Wave divider -->
-<svg class="wave" viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#fff3d6">
-  <path d="M0 48 C360 0 1080 0 1440 48 L1440 0 L0 0 Z" fill="#1a0f00"/>
-</svg>
-
 <!-- ── Avaliações ─────────────────────────────────────────────────────────── -->
 <section id="avaliacoes">
   <div class="container">
-    <div class="section-label">Clientes</div>
-    <h2 class="section-title">O que dizem por aí</h2>
+    <div class="section-label fade-up">Clientes</div>
+    <h2 class="section-title fade-up" style="transition-delay:.08s">O que dizem por aí</h2>
     <div id="react-carrossel"></div>
   </div>
 </section>
 
-<!-- Wave divider -->
-<svg class="wave" viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#fdf8f2">
-  <path d="M0 0 C360 48 1080 48 1440 0 L1440 48 L0 48 Z" fill="#fff3d6"/>
-</svg>
-
 <!-- ── Contato ────────────────────────────────────────────────────────────── -->
 <section id="contato">
   <div class="container">
-    <div class="section-label">Visita</div>
-    <h2 class="section-title">Vem nos ver</h2>
+    <div class="section-label fade-up">Visita</div>
+    <h2 class="section-title fade-up" style="transition-delay:.08s">Vem nos ver</h2>
     <div class="contato-grid" style="margin-top:2.5rem">
-      <div class="contato-info">
+      <div class="contato-info fade-up" style="transition-delay:.16s">
         <div class="contato-item">
           <div class="contato-icon">📍</div>
           <div>
@@ -178,7 +164,7 @@
         </div>
         <a href="https://wa.me/5511390609851" target="_blank" class="btn-wa-big">💬 Chamar no WhatsApp</a>
       </div>
-      <div class="mapa-wrapper">
+      <div class="mapa-wrapper fade-up" style="transition-delay:.28s">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.4!2d-46.748196!3d-23.487688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cefeb4add91205%3A0xdf5315bfb42a0f4d!2sFurlan+Pet+Shop!5e0!3m2!1spt-BR!2sbr!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
@@ -193,5 +179,6 @@
 </footer>
 
 <script src="/js/main.js"></script>
+
 </body>
 </html>
