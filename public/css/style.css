@@ -48,7 +48,7 @@ nav {
 
 /* ── Hero ─────────────────────────────────────────────────────────────────── */
 #hero {
-  background: linear-gradient(135deg, #fff3dc 0%, #ffe9c0 100%);
+  background: linear-gradient(135deg, #ffe9c0 0%, #ffd280 100%);
   padding: 5rem 2rem;
   text-align: center;
   position: relative;
@@ -75,11 +75,11 @@ nav {
 #hero p { color: var(--text2); font-size: 1.15rem; max-width: 520px; margin: 0 auto 2rem; }
 .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 .btn-primary {
-  background: var(--accent); color: #fff;
+  background: #25D366; color: #fff;
   padding: .8rem 1.8rem; border-radius: 50px;
   font-weight: 700; font-size: 1rem; transition: background .2s, transform .1s;
 }
-.btn-primary:hover { background: var(--accent-d); transform: translateY(-1px); }
+.btn-primary:hover { background: #1da851; transform: translateY(-1px); }
 .btn-ghost {
   background: transparent; color: var(--brown);
   border: 2px solid var(--brown);
@@ -113,6 +113,25 @@ section { padding: 4.5rem 2rem; }
   display: flex; align-items: center; justify-content: center;
   font-size: 8rem; height: 280px;
   box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.sobre-visual span {
+  display: inline-block;
+  animation: dogLoop 5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+@keyframes dogLoop {
+  0%   { transform: translateY(0)      rotate(0deg)   scale(1);    }
+  10%  { transform: translateY(-18px)  rotate(-8deg)  scale(1.05); }
+  20%  { transform: translateY(0)      rotate(0deg)   scale(1);    }
+  30%  { transform: translateY(-10px)  rotate(6deg)   scale(1.03); }
+  40%  { transform: translateY(0)      rotate(0deg)   scale(1);    }
+  50%  { transform: translateY(0)      rotate(-15deg) scale(0.95); }
+  60%  { transform: translateY(0)      rotate(15deg)  scale(0.95); }
+  70%  { transform: translateY(0)      rotate(0deg)   scale(1);    }
+  80%  { transform: translateY(-22px)  rotate(0deg)   scale(1.08); }
+  90%  { transform: translateY(0)      rotate(0deg)   scale(1);    }
+  100% { transform: translateY(0)      rotate(0deg)   scale(1);    }
 }
 
 /* ── Produtos ─────────────────────────────────────────────────────────────── */
