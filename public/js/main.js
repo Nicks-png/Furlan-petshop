@@ -20,18 +20,18 @@ function ContainerScroll({ titleComponent, children }) {
     if (!container || !card) return
 
     function onScroll() {
-      const rect     = container.getBoundingClientRect()
-      const winH     = window.innerHeight
-      const total    = winH + rect.height
-      const progress = Math.min(1, Math.max(0, (winH - rect.top) / total))
+      // progress: 0 quando page topo (scrollY=0), 1 quando container sai da tela
+      const scrolled   = window.scrollY
+      const offsetTop  = container.offsetTop
+      const scrollable = container.offsetHeight
+      const progress   = Math.min(1, Math.max(0, (scrolled - offsetTop * 0.1) / (scrollable * 0.6)))
 
-      const rotate = 20 - progress * 20
+      const rotate = 20 * (1 - progress)
       const scale  = isMobile
         ? 0.7  + progress * 0.2
         : 1.05 - progress * 0.05
-      const translateY = -progress * 60
 
-      card.style.transform = `perspective(1000px) rotateX(${rotate}deg) scale(${scale}) translateY(${translateY}px)`
+      card.style.transform = `perspective(1000px) rotateX(${rotate}deg) scale(${scale})`
     }
 
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -40,22 +40,20 @@ function ContainerScroll({ titleComponent, children }) {
   }, [isMobile])
 
   const containerStyle = {
-    height: isMobile ? '52rem' : '72rem',
-    display: 'flex', alignItems: 'center', justifyContent: 'center',
-    position: 'relative', padding: isMobile ? '1rem' : '5rem',
+    display: 'flex', flexDirection: 'column', alignItems: 'center',
+    justifyContent: 'flex-start', position: 'relative',
+    padding: isMobile ? '2rem 1rem 3rem' : '4rem 2rem 5rem',
   }
   const innerStyle = {
-    paddingTop: isMobile ? '2.5rem' : '8rem',
-    paddingBottom: isMobile ? '2.5rem' : '8rem',
-    width: '100%', position: 'relative',
+    width: '100%', maxWidth: '1100px', position: 'relative',
   }
   const titleStyle = {
     maxWidth: '72rem', margin: '0 auto 2rem', textAlign: 'center',
     transition: 'transform .1s linear',
   }
   const cardStyle = {
-    maxWidth: '72rem', margin: '-3rem auto 0',
-    height: isMobile ? '24rem' : '36rem', width: '100%',
+    maxWidth: '72rem', margin: '2rem auto 0',
+    height: isMobile ? '22rem' : '34rem', width: '100%',
     border: '4px solid #c4a265', padding: isMobile ? '0.5rem' : '1.5rem',
     background: 'linear-gradient(135deg, #3b2a14, #5c3d1e)',
     borderRadius: '30px',
