@@ -126,48 +126,65 @@ function LojaPreview() {
   )
 }
 
-// ── HeroScroll (monta o ContainerScroll no Hero) ──────────────────────────────
-function HeroScroll() {
-  const titleComponent = React.createElement('div', null,
-    React.createElement('div', {
-      style: {
-        display: 'inline-block', background: 'var(--accent)', color: '#fff',
-        padding: '.3rem .9rem', borderRadius: '50px',
-        fontSize: '.8rem', fontWeight: 700, letterSpacing: '.05em', marginBottom: '1.2rem',
-      }
-    }, '🐾 Vila Pirituba, São Paulo'),
-    React.createElement('h1', {
-      style: {
-        fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 900,
-        color: 'var(--brown)', lineHeight: 1.15, marginBottom: '.8rem',
-      }
-    }, 'Tudo que seu pet precisa, aqui perto!'),
-    React.createElement('p', {
-      style: { color: 'var(--text2)', fontSize: '1.1rem', maxWidth: '500px', margin: '0 auto 2rem' }
-    }, 'Rações, acessórios e produtos para cães, gatos, aves e peixes. Retirada e entrega.'),
-    React.createElement('div', { style: { display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' } },
+// ── AnimatedHero (adaptado do 21st.dev — rotating titles, CSS transitions) ────
+function AnimatedHero() {
+  const titles = ['cães e gatos', 'aves e peixes', 'sua família', 'seu melhor amigo', 'todos os pets']
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    const id = setTimeout(() => setCurrent(i => (i + 1) % titles.length), 2000)
+    return () => clearTimeout(id)
+  }, [current])
+
+  return React.createElement('div', { className: 'animated-hero' },
+
+    // Badge
+    React.createElement('div', { className: 'animated-hero-badge' },
+      '🐾 Vila Pirituba, São Paulo',
+      React.createElement('span', { style: { fontSize: '.75rem' } }, '→')
+    ),
+
+    // Títulos
+    React.createElement('div', { className: 'animated-hero-titles' },
+      React.createElement('h1', { className: 'animated-hero-h1' }, 'O melhor para'),
+      React.createElement('div', { className: 'animated-hero-rotating' },
+        titles.map((title, i) => {
+          let transform, opacity
+          if (i === current)      { transform = 'translateY(0)';     opacity = 1 }
+          else if (i < current)   { transform = 'translateY(-120%)'; opacity = 0 }
+          else                    { transform = 'translateY(120%)';  opacity = 0 }
+          return React.createElement('span', { key: i, style: { transform, opacity } }, title)
+        })
+      )
+    ),
+
+    // Subtítulo
+    React.createElement('p', { className: 'animated-hero-p' },
+      'Rações, acessórios e produtos para todos os animais. Atendimento presencial, retirada e entrega em Vila Pirituba.'
+    ),
+
+    // Botões
+    React.createElement('div', { className: 'animated-hero-actions' },
+      React.createElement('a', {
+        href: 'tel:+551139060985',
+        style: {
+          display: 'inline-flex', alignItems: 'center', gap: '.5rem',
+          border: '2px solid var(--brown)', color: 'var(--brown)',
+          background: 'transparent', padding: '.7rem 1.6rem',
+          borderRadius: '50px', fontWeight: 700, fontSize: '.95rem',
+          textDecoration: 'none',
+        }
+      }, '📞 Ligar agora'),
       React.createElement('a', {
         href: 'https://wa.me/5511390609851', target: '_blank',
         style: {
-          background: '#25D366', color: '#fff', padding: '.8rem 1.8rem',
-          borderRadius: '50px', fontWeight: 700, fontSize: '1rem',
-          textDecoration: 'none', display: 'inline-block',
+          display: 'inline-flex', alignItems: 'center', gap: '.5rem',
+          background: '#25D366', color: '#fff',
+          padding: '.7rem 1.6rem', borderRadius: '50px',
+          fontWeight: 700, fontSize: '.95rem', textDecoration: 'none',
         }
-      }, '💬 Fale pelo WhatsApp'),
-      React.createElement('a', {
-        href: '#produtos',
-        style: {
-          background: 'transparent', color: 'var(--brown)',
-          border: '2px solid var(--brown)', padding: '.75rem 1.8rem',
-          borderRadius: '50px', fontWeight: 700, fontSize: '1rem',
-          textDecoration: 'none', display: 'inline-block',
-        }
-      }, 'Ver Produtos')
+      }, '💬 WhatsApp')
     )
-  )
-
-  return React.createElement(ContainerScroll, { titleComponent },
-    React.createElement(LojaPreview)
   )
 }
 
@@ -290,6 +307,6 @@ function Carrossel() {
 }
 
 // ── Montar componentes nos containers do HTML ─────────────────────────────────
-ReactDOM.createRoot(document.getElementById('react-hero')).render(React.createElement(HeroScroll))
+ReactDOM.createRoot(document.getElementById('react-hero')).render(React.createElement(AnimatedHero))
 ReactDOM.createRoot(document.getElementById('react-loja')).render(React.createElement(Loja))
 ReactDOM.createRoot(document.getElementById('react-carrossel')).render(React.createElement(Carrossel))
