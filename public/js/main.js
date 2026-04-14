@@ -2,6 +2,17 @@
 
 const { useState, useEffect, useRef } = React
 
+// ── AuroraBackground (adaptado do 21st.dev — CSS puro, paleta quente) ────────
+function AuroraBackground({ children, showRadialGradient = true }) {
+  return React.createElement('div', { className: 'aurora-wrap' },
+    React.createElement('div', {
+      className: 'aurora-layer',
+      style: showRadialGradient ? {} : { maskImage: 'none', WebkitMaskImage: 'none' },
+    }),
+    React.createElement('div', { className: 'aurora-content' }, children)
+  )
+}
+
 // ── ContainerScroll (adaptado do 21st.dev — sem framer-motion, scroll nativo) ─
 function ContainerScroll({ titleComponent, children }) {
   const containerRef = useRef(null)
@@ -166,8 +177,10 @@ function HeroScroll() {
     )
   )
 
-  return React.createElement(ContainerScroll, { titleComponent },
-    React.createElement(LojaPreview)
+  return React.createElement(AuroraBackground, null,
+    React.createElement(ContainerScroll, { titleComponent },
+      React.createElement(LojaPreview)
+    )
   )
 }
 
