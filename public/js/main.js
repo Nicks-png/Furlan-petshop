@@ -166,24 +166,13 @@ function AnimatedHero() {
     // Botões
     React.createElement('div', { className: 'animated-hero-actions' },
       React.createElement('a', {
-        href: 'tel:+551139060985',
-        style: {
-          display: 'inline-flex', alignItems: 'center', gap: '.5rem',
-          border: '2px solid var(--brown)', color: 'var(--brown)',
-          background: 'transparent', padding: '.7rem 1.6rem',
-          borderRadius: '50px', fontWeight: 700, fontSize: '.95rem',
-          textDecoration: 'none',
-        }
-      }, '📞 Ligar agora'),
-      React.createElement('a', {
         href: 'https://wa.me/5511390609851', target: '_blank',
-        style: {
-          display: 'inline-flex', alignItems: 'center', gap: '.5rem',
-          background: '#25D366', color: '#fff',
-          padding: '.7rem 1.6rem', borderRadius: '50px',
-          fontWeight: 700, fontSize: '.95rem', textDecoration: 'none',
-        }
-      }, '💬 WhatsApp')
+        className: 'btn-primary',
+      }, '💬 WhatsApp'),
+      React.createElement('a', {
+        href: '#produtos',
+        className: 'btn-ghost',
+      }, 'Ver produtos →')
     )
   )
 }
@@ -292,6 +281,13 @@ function Carrossel() {
   }, [idx])
 
   return React.createElement('div', null,
+    React.createElement('div', { className: 'rating-header' },
+      React.createElement('div', { className: 'rating-big' }, '4,5'),
+      React.createElement('div', { className: 'rating-right' },
+        React.createElement('div', { className: 'rating-stars' }, '★★★★½'),
+        React.createElement('div', { className: 'rating-count' }, '253 avaliações no Google Maps')
+      )
+    ),
     React.createElement('div', { className: 'carrossel' },
       React.createElement('div', { className: 'cards-track', ref: trackRef },
         AVALIACOES.map((av, i) =>

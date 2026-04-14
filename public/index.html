@@ -6,7 +6,7 @@
   <title>Furlan Pet Shop — Vila Pirituba, São Paulo</title>
   <meta name="description" content="Furlan Pet Shop em Vila Pirituba, SP. Rações, acessórios, produtos para cães, gatos, aves e peixes. Entrega disponível. (11) 3906-0985.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,900;1,900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -16,7 +16,7 @@
 <!-- ── Nav ─────────────────────────────────────────────────────────────────── -->
 <nav>
   <div class="nav-logo">
-    <span>🐾</span> Furlan Pet Shop
+    <span class="paw">🐾</span> Furlan Pet Shop
   </div>
   <div class="nav-links">
     <a href="#sobre">Sobre</a>
@@ -24,88 +24,129 @@
     <a href="#avaliacoes">Avaliações</a>
     <a href="#contato">Contato</a>
   </div>
-  <a href="https://wa.me/5511390609851" target="_blank" class="nav-wa">
-    💬 WhatsApp
-  </a>
+  <a href="https://wa.me/5511390609851" target="_blank" class="nav-wa">WhatsApp</a>
 </nav>
 
-<!-- ── Hero (AnimatedHero — React) ─────────────────────────────────────────── -->
+<!-- ── Hero ────────────────────────────────────────────────────────────────── -->
 <section id="hero">
-  <div id="react-hero"><!-- React: AnimatedHero --></div>
-  <div class="hero-badges" style="padding-bottom: 3rem;">
-    <span class="badge">⭐ 4,5 no Google (253)</span>
-    <span class="badge">🚚 Entrega disponível</span>
-    <span class="badge">🏪 Retirada na loja</span>
+  <div class="hero-noise"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">🐾 Vila Pirituba · São Paulo</div>
+      <div id="react-hero"></div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-mascot-wrap">🐶</div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="badge">⭐ <strong>4,5</strong> no Google · 253 avaliações</div>
+    <div class="badge">🚚 <strong>Entrega</strong> disponível</div>
+    <div class="badge">🏪 <strong>Retirada</strong> na loja</div>
+    <div class="badge">📞 <strong>(11) 3906-0985</strong></div>
   </div>
 </section>
 
-<!-- ── Sobre ────────────────────────────────────────────────────────────────── -->
+<!-- Wave divider -->
+<svg class="wave" viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0 48 C360 0 1080 0 1440 48 L1440 0 L0 0 Z" fill="#1a0f00"/>
+</svg>
+
+<!-- ── Sobre ─────────────────────────────────────────────────────────────── -->
 <section id="sobre">
   <div class="container">
     <div class="sobre-grid">
       <div class="sobre-text">
-        <h2>A pet shop clássica da sua região</h2>
-        <p>O Furlan Pet Shop é referência em Vila Pirituba há anos, oferecendo grande variedade de rações, acessórios e produtos para todos os tipos de pets — cães, gatos, aves, peixes e muito mais.</p>
-        <p>Reconhecido pelo atendimento diferenciado e preços acessíveis, com profissionais que realmente entendem de pets.</p>
+        <div class="section-label">Quem somos</div>
+        <h2 class="section-title">A pet shop clássica de Vila Pirituba</h2>
+        <p>Referência no bairro há anos, o Furlan atende cães, gatos, aves, peixes e muito mais — com produtos de qualidade, preços honestos e gente que entende de bicho.</p>
         <div class="sobre-info">
           <div class="info-item">
-            <span class="info-icon">📍</span>
+            <div class="info-icon">📍</div>
             <div>
               <strong>Endereço</strong>
-              <span>Av. Mutinga, 2476 — Vila Pirituba, São Paulo - SP</span>
+              <span>Av. Mutinga, 2476 — Vila Pirituba, SP</span>
             </div>
           </div>
           <div class="info-item">
-            <span class="info-icon">🕘</span>
+            <div class="info-icon">🕘</div>
             <div>
               <strong>Horário</strong>
               <span>Segunda a Sábado · 09h às 19h</span>
             </div>
           </div>
           <div class="info-item">
-            <span class="info-icon">📞</span>
+            <div class="info-icon">🚚</div>
             <div>
-              <strong>Telefone</strong>
-              <span>(11) 3906-0985</span>
+              <strong>Entrega e retirada</strong>
+              <span>Compra online, entrega ou retire na loja</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="sobre-visual"><span>🐶</span></div>
+      <div class="sobre-visual">
+        <div class="sobre-card">
+          <div class="sobre-card-emoji"><span>🐶</span></div>
+          <div class="sobre-card-stat">
+            <div class="stat">
+              <div class="stat-num">4,5★</div>
+              <div class="stat-label">Google Maps</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">253</div>
+              <div class="stat-label">Avaliações</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">anos</div>
+              <div class="stat-label">no bairro</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── Produtos ─────────────────────────────────────────────────────────────── -->
+<!-- Wave divider -->
+<svg class="wave" viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#fdf8f2">
+  <path d="M0 0 C360 48 1080 48 1440 0 L1440 48 L0 48 Z" fill="#1a0f00"/>
+</svg>
+
+<!-- ── Produtos ───────────────────────────────────────────────────────────── -->
 <section id="produtos">
   <div class="container">
-    <h2 class="section-title">Nossos Produtos</h2>
-    <div class="divider"></div>
-    <p class="section-sub">Boa variedade de rações, acessórios e alimentação para todos os pets</p>
-    <div id="react-loja"><!-- React: Loja --></div>
+    <div class="section-label" style="color:rgba(240,146,10,.7)">Loja</div>
+    <h2 class="section-title light">Tudo que o seu pet precisa</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,.35)">Rações, acessórios, higiene e muito mais</p>
+    <div id="react-loja"></div>
   </div>
 </section>
 
-<!-- ── Avaliações ───────────────────────────────────────────────────────────── -->
+<!-- Wave divider -->
+<svg class="wave" viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#fff3d6">
+  <path d="M0 48 C360 0 1080 0 1440 48 L1440 0 L0 0 Z" fill="#1a0f00"/>
+</svg>
+
+<!-- ── Avaliações ─────────────────────────────────────────────────────────── -->
 <section id="avaliacoes">
   <div class="container">
-    <h2 class="section-title">O que dizem nossos clientes</h2>
-    <div class="divider"></div>
-    <div class="rating-header">
-      <div class="rating-big">4,5</div>
-      <div class="rating-stars">★★★★½</div>
-      <div class="rating-count">253 avaliações no Google Maps</div>
-    </div>
-    <div id="react-carrossel"><!-- React: Carrossel --></div>
+    <div class="section-label">Clientes</div>
+    <h2 class="section-title">O que dizem por aí</h2>
+    <div id="react-carrossel"></div>
   </div>
 </section>
 
-<!-- ── Contato ──────────────────────────────────────────────────────────────── -->
+<!-- Wave divider -->
+<svg class="wave" viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#fdf8f2">
+  <path d="M0 0 C360 48 1080 48 1440 0 L1440 48 L0 48 Z" fill="#fff3d6"/>
+</svg>
+
+<!-- ── Contato ────────────────────────────────────────────────────────────── -->
 <section id="contato">
   <div class="container">
-    <h2 class="section-title">Como nos encontrar</h2>
-    <div class="divider"></div>
-    <div class="contato-grid">
+    <div class="section-label">Visita</div>
+    <h2 class="section-title">Vem nos ver</h2>
+    <div class="contato-grid" style="margin-top:2.5rem">
       <div class="contato-info">
         <div class="contato-item">
           <div class="contato-icon">📍</div>
@@ -124,7 +165,7 @@
         <div class="contato-item">
           <div class="contato-icon">🕘</div>
           <div>
-            <strong>Horário de funcionamento</strong>
+            <strong>Horário</strong>
             <span>Segunda a Sábado · 09h às 19h</span>
           </div>
         </div>
@@ -135,23 +176,20 @@
             <a href="https://instagram.com/furlanpetshop" target="_blank">@furlanpetshop</a>
           </div>
         </div>
-        <a href="https://wa.me/5511390609851" target="_blank" class="btn-wa-big">
-          💬 Chamar no WhatsApp
-        </a>
+        <a href="https://wa.me/5511390609851" target="_blank" class="btn-wa-big">💬 Chamar no WhatsApp</a>
       </div>
       <div class="mapa-wrapper">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.4!2d-46.748196!3d-23.487688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cefeb4add91205%3A0xdf5315bfb42a0f4d!2sFurlan+Pet+Shop!5e0!3m2!1spt-BR!2sbr!4v1"
-          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.4!2d-46.748196!3d-23.487688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cefeb4add91205%3A0xdf5315bfb42a0f4d!2sFurlan+Pet+Shop!5e0!3m2!1spt-BR!2sbr!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Footer ───────────────────────────────────────────────────────────────── -->
+<!-- ── Footer ────────────────────────────────────────────────────────────── -->
 <footer>
-  <p>© 2025 <strong>Furlan Pet Shop</strong> · Av. Mutinga, 2476 — Vila Pirituba, SP · (11) 3906-0985</p>
+  <span class="footer-brand">🐾 Furlan Pet Shop</span>
+  <span>Av. Mutinga, 2476 — Vila Pirituba, SP · (11) 3906-0985</span>
+  <span>© 2025</span>
 </footer>
 
 <script src="/js/main.js"></script>
