@@ -85,7 +85,7 @@ PORT=3004 npm start    # rodar em porta alternativa
 ## Status de implementação
 
 - [x] Estrutura de arquivos criada
-- [x] Backend Express com API `/api/produtos`
+- [x] Backend Express com API `/api/produtos` (mantido em `server.js`)
 - [x] 18 produtos cadastrados em 5 categorias
 - [x] Frontend completo: Hero, Sobre, Produtos, Avaliações, Contato
 - [x] Filtro de categorias dinâmico (fetch API)
@@ -94,13 +94,54 @@ PORT=3004 npm start    # rodar em porta alternativa
 - [x] Mapa Google embed
 - [x] Responsivo (mobile)
 - [x] Push no GitHub (branch `main`)
+- [x] **Migração para Next.js 16 + Tailwind v3 + shadcn**
+- [x] **Componente DemoBackground (MeshGradient) integrado no Hero**
+- [x] **API migrada para Next.js route handler** (`app/api/produtos/route.ts`)
+- [x] **TypeScript strict — 0 erros de compilação**
+- [x] **Build Next.js bem-sucedido**
 - [ ] Confirmar URL do Instagram com o cliente
 - [ ] Confirmar horários completos com o cliente
-- [ ] Deploy no Render ou configurar GitHub Pages
+- [ ] Deploy no Render (atualizar configuração)
 
-## Deploy (Render)
+## Estrutura Next.js
+
+```
+app/
+├── layout.tsx         # Fonts Fraunces + Nunito via next/font
+├── page.tsx           # Composição das seções
+├── globals.css        # Tailwind + todo o CSS customizado
+└── api/produtos/
+    └── route.ts       # API route handler (GET /api/produtos)
+components/
+├── Nav.tsx
+├── HeroSection.tsx    # "use client" — DemoBackground (ssr:false) + palavras animadas
+├── SobreSection.tsx
+├── ServicosSection.tsx
+├── ProdutosSection.tsx  # "use client" — carrinho + fetch
+├── AvaliacoesSection.tsx # "use client" — carrossel
+├── CtaSection.tsx
+├── ContatoSection.tsx
+├── Footer.tsx
+└── ui/
+    ├── demo.tsx       # DemoBackground (MeshGradient / DotOrbit)
+    └── background-paper-shaders.tsx  # ShaderPlane + EnergyRing (R3F)
+lib/utils.ts           # cn() helper (clsx + tailwind-merge)
+src/data/produtos.ts   # Dados tipados (Produto interface)
+```
+
+## Comandos
+
+```bash
+npm run dev    # Next.js dev server (porta 3001 se 3000 ocupada)
+npm run build  # Build de produção
+npm run start  # Next.js em produção
+npm run server # Express legado (node server.js)
+```
+
+## Deploy (Render — atualizado)
 
 1. Conectar repositório `Nicks-png/Furlan-petshop`
-2. Build: `npm install`
-3. Start: `node server.js`
+2. Build: `npm install && npm run build`
+3. Start: `npm run start`
+4. Variável de ambiente: `PORT=10000`
 4. Variável de ambiente: `PORT=10000`

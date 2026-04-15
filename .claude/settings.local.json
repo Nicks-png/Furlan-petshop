@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(npx next *)",
+      "Bash(curl -s http://localhost:3099)",
+      "Bash(pkill -f \"next start\")",
+      "Bash(pkill -f \"node server\")",
+      "Bash(PORT=3004 npm run dev)",
+      "Bash(curl -s http://localhost:3004)",
+      "Bash(curl -s \"http://localhost:3004/_next/static/chunks/Furlan-petshop_0rqeker._.js\")",
+      "Bash(node *)",
+      "Bash(curl -s \"http://localhost:3004/_next/static/chunks/0qpk_next_dist_compiled_react-dom_0xgjf7y._.js\")",
+      "Bash(npx kill-port *)",
+      "Bash(PORT=3004 npm start)",
+      "Bash(git add *)",
+      "Bash(git reset *)",
+      "Bash(git rm *)"
+    ]
+  }
+}

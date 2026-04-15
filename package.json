@@ -4,14 +4,37 @@
   "description": "Site institucional e loja do Furlan Pet Shop",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "server": "node server.js"
   },
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.75",
+    "@react-three/fiber": "^9.6.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "framer-motion": "^12.38.0"
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.8.0",
+    "next": "^16.2.3",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "tailwind-merge": "^3.5.0",
+    "three": "^0.183.2"
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.183.1",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.9",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^6.0.2"
   }
 }
